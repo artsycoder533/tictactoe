@@ -18,13 +18,24 @@ const gameboard = (function () {
     const updateBoard = function () {
         //add check if space is empty
         if (gameboardArray[this.dataset.id]) {
-            //display error message
-            //return
+            displayMessage("danger");
         }
         gameboardContainer.children[this.dataset.id].textContent = "N";
         gameboardArray[this.dataset.id] = "N";
         console.log(gameboardArray);
     };
+
+    const displayMessage = function (status) {
+        const getMessage = document.querySelector(".card__message");
+        getMessage.classList.add(`card__message--${status}`);
+        getMessage.textContent = "Spot already take, please enter a valid move!";
+        getMessage.classList.add(`card__message--${status}`);
+        setTimeout(function () {
+            getMessage.textContent = "";
+            getMessage.classList.remove(`card__message--${status}`);
+        }, 1500);
+        
+    }
     
 	return { displayBoard};
 })();
