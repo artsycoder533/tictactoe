@@ -19,6 +19,7 @@ const gameboard = (function () {
         //add check if space is empty
         if (gameboardArray[this.dataset.id]) {
             displayMessage("danger");
+            return;
         }
         gameboardContainer.children[this.dataset.id].textContent = "N";
         gameboardArray[this.dataset.id] = "N";
