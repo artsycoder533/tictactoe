@@ -9,7 +9,7 @@ const gameboard = (function () {
 			gameSpace = document.createElement("article");
 			gameSpace.classList.add("card__item");
 			gameSpace.addEventListener("click", updateBoard);
-			gameSpace.textContent = "";
+			gameSpace.textContent = gameboardArray[index];
 			gameSpace.dataset.id = index;
 			gameboardContainer.appendChild(gameSpace);
 		});
@@ -47,7 +47,6 @@ const gameboard = (function () {
                 getMessage.classList.remove(`card__message--${status}`);
             }, 1500);
         }
-        
     };
 
     const clearBoard = function () {
@@ -57,7 +56,7 @@ const gameboard = (function () {
         });
     }
     
-	return { displayBoard};
+	return { displayBoard, clearBoard};
 })();
 gameboard.displayBoard();
 
