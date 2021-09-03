@@ -35,7 +35,13 @@ const gameboard = (function () {
             getMessage.textContent = "";
             getMessage.classList.remove(`card__message--${status}`);
         }, 1500);
-        
+    };
+
+    const clearBoard = function () {
+        gameboardArray.forEach(spot, index){
+            spot[index] = "";
+            gameboardContainer.children[index].textContent = "";
+        }
     }
     
 	return { displayBoard};
