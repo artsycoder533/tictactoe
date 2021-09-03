@@ -1,40 +1,43 @@
 const gameboardContainer = document.querySelector(".card__content");
-const gameboard = (function () {
-	const gameboard = Array(9).fill("");
+const startGame = document.querySelector(".card_button");
 
+
+const gameboard = (function () {
+    const gameboardArray = Array(9).fill("");
 	const displayBoard = function () {
-		gameboard.forEach(function (gameSpace, index) {
+		gameboardArray.forEach(function (gameSpace, index) {
 			gameSpace = document.createElement("article");
 			gameSpace.classList.add("card__item");
 			gameSpace.addEventListener("click", updateBoard);
 			gameSpace.textContent = "";
 			gameSpace.dataset.id = index;
 			gameboardContainer.appendChild(gameSpace);
-			gameboard.push(gameSpace);
 		});
 	};
 
-    const updateBoard = function (selection, symbol) {
-        console.log(selection);
-        console.log(symbol);
-		gameboardContainer.children[selection].textContent = symbol;
-	};
-	return { displayBoard, updateBoard };
+    const updateBoard = function () {
+        gameboardContainer.children[this.dataset.id].textContent = "N";
+        gameboardArray[this.dataset.id] = "N";
+        console.log(gameboardArray);
+    };
+    
+	return { displayBoard};
 })();
 gameboard.displayBoard();
 
 const Player = function (name, marker) {
-	const getName = function (name) {
+	const getName = function () {
 		return name;
 	};
-	const getSymbol = function (marker) {
+	const getMarker = function () {
 		return marker;
-	};
-	
-	return { name, marker };
+    };
+    const getSelection = function () {
+        gameboardContainer.children[id].textContent = symbol;
+    }
+	return { getName, getMarker, getSelection };
 };
-const natasha = Player("natasha", "X");
-natasha.getName;
-natasha.getMarker;
-console.log(natasha);
-gameboard.updateBoard(natasha.getName, natasha.getSymbol);
+const player1 = Player("natasha", "X");
+const player2 = Player("computer", "O");
+
+//gameboard.updateBoard(player1.getName(), player1.getMarker());
