@@ -38,10 +38,10 @@ const gameboard = (function () {
     };
 
     const clearBoard = function () {
-        gameboardArray.forEach(spot, index){
+        gameboardArray.forEach(function(spot, index){
             spot[index] = "";
             gameboardContainer.children[index].textContent = "";
-        }
+        });
     }
     
 	return { displayBoard};
