@@ -41,6 +41,20 @@ body {
     cursor: pointer;
 }
 
+.btn:hover {
+    opacity: 0.5;
+}
+
+.card__button--primary{
+    background: black;
+    color: white;
+}
+
+.card__button--secondary {
+    background: white;
+    color: black;
+}
+
 .card__message{
     padding: 0.5rem;
     margin: 2rem;
