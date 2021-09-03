@@ -21,6 +21,7 @@ const gameboard = (function () {
             displayMessage("danger");
             return;
         }
+        displayMessage("success");
         gameboardContainer.children[this.dataset.id].textContent = "N";
         gameboardArray[this.dataset.id] = "N";
         console.log(gameboardArray);
@@ -28,13 +29,25 @@ const gameboard = (function () {
 
     const displayMessage = function (status) {
         const getMessage = document.querySelector(".card__message");
-        getMessage.classList.add(`card__message--${status}`);
-        getMessage.textContent = "Spot already take, please enter a valid move!";
-        getMessage.classList.add(`card__message--${status}`);
-        setTimeout(function () {
-            getMessage.textContent = "";
-            getMessage.classList.remove(`card__message--${status}`);
-        }, 1500);
+        if (status === "danger") {
+            getMessage.classList.add(`card__message--${status}`);
+            getMessage.textContent = "Spot already take, please enter a valid move!";
+            getMessage.classList.add(`card__message--${status}`);
+            setTimeout(function () {
+                getMessage.textContent = "";
+                getMessage.classList.remove(`card__message--${status}`);
+            }, 1500);
+        }
+        else {
+            getMessage.classList.add(`card__message--${status}`);
+            getMessage.textContent = "Valid move!";
+            getMessage.classList.add(`card__message--${status}`);
+            setTimeout(function () {
+                getMessage.textContent = "";
+                getMessage.classList.remove(`card__message--${status}`);
+            }, 1500);
+        }
+        
     };
 
     const clearBoard = function () {
