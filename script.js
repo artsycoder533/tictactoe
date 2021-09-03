@@ -16,6 +16,11 @@ const gameboard = (function () {
 	};
 
     const updateBoard = function () {
+        //add check if space is empty
+        if (gameboardArray[this.dataset.id]) {
+            //display error message
+            //return
+        }
         gameboardContainer.children[this.dataset.id].textContent = "N";
         gameboardArray[this.dataset.id] = "N";
         console.log(gameboardArray);

@@ -38,6 +38,23 @@ body {
     cursor: pointer;
 }
 
+.card__message{
+    padding: 0.5rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    
+}
+
+.card__message--danger{
+    background: rgb(167, 1, 1);
+}
+
+.card__message--success{
+    background: rgb(0, 84, 0);
+}
+
 .card__content {
     margin-top: 1rem;
     display: grid;
