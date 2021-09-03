@@ -8,14 +8,17 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
-    border: 5px solid green;
 }
 
 .card {
-    max-width: 500px;
     width: 90vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;;
+    
+    border: 2px solid red;
 }
 
 .card__header {
@@ -40,6 +43,7 @@ body {
 
 .card__message{
     padding: 0.5rem;
+    margin: 2rem;
     width: 100%;
     text-align: center;
     color: white;
@@ -60,8 +64,10 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    width: 500px;
-    height: 500px;
+    max-width: 500px;
+    width: 90vw;
+    max-height: 500px;
+    height: 90vw;
 }
 
 .card__item {
