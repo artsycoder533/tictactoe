@@ -83,32 +83,41 @@ const Game = (function () {
             space.addEventListener("click", playGame);
         });
     });
+    const winningPositions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 	const player1 = Player("X");
 	const player2 = Player("O");
 	let gameStarted = false;
-	const winner = "";
+    const winner = "";
+    let currentPlayer = 2;
 	const getPlayer1 = function () {
 		return player1;
 	};
 	const getPlayer2 = function () {
 		return player2;
 	};
-
+  
     const playGame = function () {
         gameStarted = true;
-        Gameboard.updateBoard(getPlayer1().getMarker(), this.dataset.id);
+        console.log(currentPlayer);
+        Gameboard.updateBoard(togglePlayer(currentPlayer).getMarker(), this.dataset.id);
         return;
 	};
-	const getPlayerTurn = function (currentPlayer) {
-		if (currentPlayer === player1) {
-			return getPlayer1();
-		}
-		if (currentPlayer === player2) {
+	const togglePlayer = function () {
+        if (currentPlayer === 1) {
+            currentPlayer++;
 			return getPlayer2();
 		}
-	};
+        if (currentPlayer === 2) {
+            currentPlayer--;
+			return getPlayer1();
+		}
+    };
+    
+    const checkForWinner = function () {
+        
+    }
 	//startGame.addEventListener("click", playGame);
-	return { playGame, getPlayerTurn, getPlayer1, getPlayer2, getPlayerTurn };
+	return { playGame, getPlayer1, getPlayer2, togglePlayer, checkForWinner };
 }());
 
 
