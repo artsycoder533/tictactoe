@@ -72,6 +72,9 @@ const Player = function (marker) {
 const Game = (function () {
     const startGame = document.getElementById("start");
     startGame.addEventListener("click", function () {
+        if (gameStarted === true) {
+            return;
+        }
         Gameboard.displayBoard();
         console.log("start game");
         const board = Gameboard.getBoard().children;
@@ -80,10 +83,9 @@ const Game = (function () {
             space.addEventListener("click", playGame);
         });
     });
-	const currentPlayer = "player1";
 	const player1 = Player("X");
 	const player2 = Player("O");
-	const gameOver = false;
+	let gameStarted = false;
 	const winner = "";
 	const getPlayer1 = function () {
 		return player1;
@@ -93,9 +95,8 @@ const Game = (function () {
 	};
 
     const playGame = function () {
-        console.log(this);
-        console.log("inside play game");
-        Gameboard.updateBoard(getPlayer1().getMarker(), this.dataset.id)
+        gameStarted = true;
+        Gameboard.updateBoard(getPlayer1().getMarker(), this.dataset.id);
         return;
 	};
 	const getPlayerTurn = function (currentPlayer) {
