@@ -2,7 +2,8 @@ const gameboardContainer = document.querySelector(".card__content");
 const startGame = document.querySelector(".card_button");
 
 
-const gameboard = (function () {
+
+const Gameboard = (function () {
     const gameboardArray = Array(9).fill("");
 	const displayBoard = function () {
 		gameboardArray.forEach(function (gameSpace, index) {
@@ -16,7 +17,9 @@ const gameboard = (function () {
 	};
 
     const updateBoard = function () {
+        //console.log(playerMarker.target);
         //add check if space is empty
+        
         if (gameboardArray[this.dataset.id]) {
             displayMessage("danger");
             return;
@@ -56,11 +59,12 @@ const gameboard = (function () {
         });
     }
     
-	return { displayBoard, clearBoard};
-})();
-gameboard.displayBoard();
+	return { displayBoard, clearBoard, updateBoard};
+}());
+Gameboard.displayBoard();
 
-const Player = function (name, marker) {
+const Player = function (name, marker, selection) {
+    //const {displayBoard} = Gameboard(selection)
 	const getName = function () {
 		return name;
 	};
@@ -68,11 +72,36 @@ const Player = function (name, marker) {
 		return marker;
     };
     const getSelection = function () {
-        gameboardContainer.children[id].textContent = symbol;
-    }
-	return { getName, getMarker, getSelection };
+        return selection;
+        //gameboardContainer.children[id].textContent = symbol;
+    };
+    //const { updateBoard } = Gameboard.updateBoard();
+    
+	return { getName, getMarker, getSelection};
 };
 const player1 = Player("natasha", "X");
 const player2 = Player("computer", "O");
 
-//gameboard.updateBoard(player1.getName(), player1.getMarker());
+//gameboard.updateBoard(player1.getName(), player1.getMarker())
+
+const Game = (function (playerA, playerB) {
+    const gameOver = false;
+    const winner = "";
+    const playGame = function () {
+        while (!winner && gameOver) {
+            console.log(playerA.getMarker());
+            playerA.updateBoard();
+        }
+    }
+    const getPlayerTurn = function () {
+        //console.log(Player.getMarker());
+        //Gameboard.updateBoard(Player.getMarker());
+    }
+    return { playGame, getPlayerTurn};
+})();
+
+// Game.playGame(player1, player2);
+
+const Foo = (function () {
+    
+})();
