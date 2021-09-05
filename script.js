@@ -26,8 +26,8 @@ const Gameboard = (function () {
 		return gameboardContainer;
 	};
 
-    const displayMessage = function (status, playerName) {
-        //console.log(status, playerName);
+	const displayMessage = function (status, playerName) {
+		//console.log(status, playerName);
 		const getMessage = document.querySelector(".card__message");
 		if (status === "danger") {
 			getMessage.classList.add(`card__message--${status}`);
@@ -36,20 +36,20 @@ const Gameboard = (function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove(`card__message--${status}`);
 			}, 1500);
-        } else if (status === "turn") {
-            getMessage.classList.add(`card__message--success`);
+		} else if (status === "turn") {
+			getMessage.classList.add(`card__message--success`);
 			getMessage.textContent = `${playerName}'s' turn!`;
 			setTimeout(function () {
-                getMessage.textContent = "";
-                getMessage.classList.remove(`card__message--success`);
+				getMessage.textContent = "";
+				getMessage.classList.remove(`card__message--success`);
 			}, 1500);
-        } else if (status === "winner") {
-            getMessage.classList.add("card__message--success");
-            getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
-            console.log(getMessage.textContent);
+		} else if (status === "winner") {
+			getMessage.classList.add("card__message--success");
+			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
+			console.log(getMessage.textContent);
 			setTimeout(function () {
-                getMessage.textContent = "";
-                getMessage.classList.remove("card__message--success");
+				getMessage.textContent = "";
+				getMessage.classList.remove("card__message--success");
 			}, 1500);
 		}
 	};
@@ -99,10 +99,11 @@ const Game = (function () {
 		const board = Gameboard.getBoard().children;
 		let spaces = [...board];
 		spaces.forEach(function (space) {
-            space.addEventListener("click", playGame);
-           // playGame();
+			space.addEventListener("click", playGame);
+			// playGame();
 		});
 	});
+
 	const winningPositions = [
 		[1, 2, 3],
 		[4, 5, 6],
@@ -116,7 +117,7 @@ const Game = (function () {
 	const player1 = Player("Natasha", "X");
 	const player2 = Player("Computer", "O");
 	let gameStarted = false;
-	let winner = "";
+	let gameOver = false;
 	let currentPlayer = 2;
 	const getPlayer1 = function () {
 		return player1;
@@ -127,12 +128,15 @@ const Game = (function () {
 
 	const playGame = function () {
 		gameStarted = true;
-		let player;
-		player = togglePlayer(currentPlayer);
-		Gameboard.displayMessage("turn", player.getName());
-		Gameboard.updateBoard(player.getMarker(), this.dataset.id);
-		checkForWinner(player, player.getMarker());
-		//return;
+		if (gameOver === false) {
+			let player;
+			player = togglePlayer(currentPlayer);
+			Gameboard.displayMessage("turn", player.getName());
+			Gameboard.updateBoard(player.getMarker(), this.dataset.id);
+			checkForWinner(player, player.getMarker());
+		}
+
+		return;
 	};
 	const togglePlayer = function () {
 		if (currentPlayer === 1) {
@@ -150,31 +154,36 @@ const Game = (function () {
 		if (arr[0] === mark && arr[1] === mark && arr[2] === mark) {
 			console.log(`${player.getName()} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[3] === mark && arr[4] === mark && arr[5] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[6] === mark && arr[7] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[0] === mark && arr[3] === mark && arr[6] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[1] === mark && arr[4] === mark && arr[7] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[2] === mark && arr[5] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[0] === mark && arr[4] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
+			gameOver === true;
 		} else if (arr[2] === mark && arr[4] === mark && arr[6] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-		} else {
-			//Gameboard.displayMessage("message", "message");
-        }
-		//gameStarted = false;
+			gameOver = true;
+		}
 	};
 	return { playGame, getPlayer1, getPlayer2, togglePlayer, checkForWinner };
 })();
