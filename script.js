@@ -1,9 +1,9 @@
 const Gameboard = (function () {
-    const gameboardContainer = document.querySelector(".card__content");
-    const reset = document.getElementById("reset");
-    reset.addEventListener("click", function () {
-        clearBoard();
-    });
+	const gameboardContainer = document.querySelector(".card__content");
+	const reset = document.getElementById("reset");
+	reset.addEventListener("click", function () {
+		clearBoard();
+	});
 	const gameboardArray = Array(9).fill("");
 	const displayBoard = function () {
 		gameboardArray.forEach(function (gameSpace, index) {
@@ -55,23 +55,25 @@ const Gameboard = (function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
 			}, 1500);
-        }
-        else if (status === "draw") {
-            getMessage.classList.add("card__message--success");
+		} else if (status === "draw") {
+			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `Its a draw, no winner!`;
 			console.log(getMessage.textContent);
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
 			}, 1500);
-        }
+		}
 	};
 
 	const clearBoard = function () {
 		gameboardArray.forEach(function (spot, index) {
-			spot[index] = "";
+			gameboardArray[index] = "";
 			gameboardContainer.children[index].textContent = "";
 		});
+		console.log(gameboardArray);
+		Game.setGameOver(false);
+		//Game.playGame();
 	};
 
 	const getGameBoardArray = function () {
@@ -112,8 +114,8 @@ const Game = (function () {
 		const board = Gameboard.getBoard().children;
 		let spaces = [...board];
 		spaces.forEach(function (space) {
-            space.addEventListener("click", playGame);
-            Gameboard.displayMessage("turn", player1.getName());
+			space.addEventListener("click", playGame);
+			Gameboard.displayMessage("turn", player1.getName());
 		});
 	});
 
@@ -127,7 +129,7 @@ const Game = (function () {
 		[1, 5, 9],
 		[3, 5, 7],
 	];
-	const player1 = Player("Natasha", "X");
+	const player1 = Player("Player", "X");
 	const player2 = Player("Computer", "O");
 	let gameStarted = false;
 	let gameOver = false;
@@ -139,18 +141,44 @@ const Game = (function () {
 		return player2;
 	};
 
-	const playGame = function () {
-		gameStarted = true;
-		if (gameOver === false) {
-			let player;
-			player = togglePlayer(currentPlayer);
-			//Gameboard.displayMessage("turn", player.getName());
-			Gameboard.updateBoard(player.getMarker(), this.dataset.id);
-			checkForWinner(player, player.getMarker());
-		}
+	const setGameOver = function (change) {
+		gameOver = change;
+	};
 
+	const getGameOver = function () {
+		return gameOver;
+	};
+	const playGame = function () {
+		//setGameOver(false);
+		if (getGameOver() === false) {
+			//let player;
+			//player = togglePlayer(currentPlayer);
+			//Gameboard.displayMessage("turn", player.getName());
+			Gameboard.updateBoard(player1.getMarker(), this.dataset.id);
+			checkForWinner(player1, player1.getMarker());
+			if (getGameOver() === false) {
+				Gameboard.updateBoard(player2.getMarker(), getComputerMove());
+				checkForWinner(player2, player2.getMarker());
+			}
+		}
 		return;
 	};
+
+	const getComputerMove = function () {
+		let computerMove = Math.floor(Math.random() * 9);
+		let random = Gameboard.getGameBoardArray();
+		console.log(random[computerMove]);
+		if (random[computerMove] === "X" || random[computerMove] === "O") {
+			console.log("DUPLICATE......computers move is: " + computerMove);
+			while (random[computerMove] === "X" || random[computerMove] === "O") {
+				computerMove = Math.floor(Math.random() * 9);
+				console.log("WHILE....computers move is: " + computerMove);
+			}
+		}
+		console.log("computers move is: " + computerMove);
+		return computerMove;
+	};
+
 	const togglePlayer = function () {
 		if (currentPlayer === 1) {
 			currentPlayer++;
@@ -167,40 +195,48 @@ const Game = (function () {
 		if (arr[0] === mark && arr[1] === mark && arr[2] === mark) {
 			console.log(`${player.getName()} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[3] === mark && arr[4] === mark && arr[5] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[6] === mark && arr[7] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[0] === mark && arr[3] === mark && arr[6] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[1] === mark && arr[4] === mark && arr[7] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[2] === mark && arr[5] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[0] === mark && arr[4] === mark && arr[8] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
+			setGameOver(true);
 		} else if (arr[2] === mark && arr[4] === mark && arr[6] === mark) {
 			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
-			gameOver = true;
-        }
-        else if (arr.indexOf("") === -1) {
-            Gameboard.displayMessage("draw");
-			gameOver = true;
-        }
+			setGameOver(true);
+		} else if (arr.indexOf("") === -1) {
+			Gameboard.displayMessage("draw");
+			setGameOver(true);
+		}
 	};
-	return { playGame, getPlayer1, getPlayer2, togglePlayer, checkForWinner };
+	return {
+		playGame,
+		getPlayer1,
+		getPlayer2,
+		togglePlayer,
+		checkForWinner,
+		getComputerMove,
+		setGameOver,
+		getGameOver,
+	};
 })();
