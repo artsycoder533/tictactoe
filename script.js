@@ -1,10 +1,12 @@
 const Gameboard = (function () {
 	const gameboardContainer = document.querySelector(".card__content");
 	const reset = document.getElementById("reset");
+	const gameboardArray = Array(9).fill("");
+
 	reset.addEventListener("click", function () {
 		clearBoard();
 	});
-	const gameboardArray = Array(9).fill("");
+
 	const displayBoard = function () {
 		gameboardArray.forEach(function (gameSpace, index) {
 			gameSpace = document.createElement("article");
@@ -20,10 +22,8 @@ const Gameboard = (function () {
 			displayMessage("danger");
 			return;
 		}
-		//displayMessage("success");
 		gameboardContainer.children[index].textContent = mark;
 		gameboardArray[index] = mark;
-		console.log(gameboardArray);
 	};
 
 	const getBoard = function () {
@@ -31,11 +31,11 @@ const Gameboard = (function () {
 	};
 
 	const displayMessage = function (status, playerName) {
-		//console.log(status, playerName);
 		const getMessage = document.querySelector(".card__message");
 		if (status === "danger") {
 			getMessage.classList.add(`card__message--${status}`);
 			getMessage.textContent = "Spot already taken, please enter a valid move!";
+
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove(`card__message--${status}`);
@@ -43,6 +43,7 @@ const Gameboard = (function () {
 		} else if (status === "turn") {
 			getMessage.classList.add(`card__message--success`);
 			getMessage.textContent = `${playerName}'s' turn!`;
+
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove(`card__message--success`);
@@ -50,7 +51,7 @@ const Gameboard = (function () {
 		} else if (status === "winner") {
 			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
-			console.log(getMessage.textContent);
+
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
@@ -58,7 +59,7 @@ const Gameboard = (function () {
 		} else if (status === "draw") {
 			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `Its a draw, no winner!`;
-			console.log(getMessage.textContent);
+			
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
@@ -71,7 +72,7 @@ const Gameboard = (function () {
 			gameboardArray[index] = "";
 			gameboardContainer.children[index].textContent = "";
 		});
-		console.log(gameboardArray);
+
 		Game.setGameOver(false);
 		//Game.playGame();
 	};
@@ -134,9 +135,11 @@ const Game = (function () {
 	let gameStarted = false;
 	let gameOver = false;
 	let currentPlayer = 2;
+
 	const getPlayer1 = function () {
 		return player1;
 	};
+	
 	const getPlayer2 = function () {
 		return player2;
 	};
@@ -167,15 +170,11 @@ const Game = (function () {
 	const getComputerMove = function () {
 		let computerMove = Math.floor(Math.random() * 9);
 		let random = Gameboard.getGameBoardArray();
-		console.log(random[computerMove]);
 		if (random[computerMove] === "X" || random[computerMove] === "O") {
-			console.log("DUPLICATE......computers move is: " + computerMove);
 			while (random[computerMove] === "X" || random[computerMove] === "O") {
 				computerMove = Math.floor(Math.random() * 9);
-				console.log("WHILE....computers move is: " + computerMove);
 			}
 		}
-		console.log("computers move is: " + computerMove);
 		return computerMove;
 	};
 
@@ -193,35 +192,27 @@ const Game = (function () {
 	const checkForWinner = function (player, mark) {
 		const arr = Gameboard.getGameBoardArray();
 		if (arr[0] === mark && arr[1] === mark && arr[2] === mark) {
-			console.log(`${player.getName()} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[3] === mark && arr[4] === mark && arr[5] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[6] === mark && arr[7] === mark && arr[8] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[0] === mark && arr[3] === mark && arr[6] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[1] === mark && arr[4] === mark && arr[7] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[2] === mark && arr[5] === mark && arr[8] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[0] === mark && arr[4] === mark && arr[8] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr[2] === mark && arr[4] === mark && arr[6] === mark) {
-			console.log(`${mark} player won!`);
 			Gameboard.displayMessage("winner", player.getName());
 			setGameOver(true);
 		} else if (arr.indexOf("") === -1) {
