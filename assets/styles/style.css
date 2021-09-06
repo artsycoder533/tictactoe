@@ -8,6 +8,8 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
+    background: rgba(0,0,0,0.5) url(/assets/images/background.jpg) center/cover;
+    background-blend-mode: multiply;
 }
 
 .card {
