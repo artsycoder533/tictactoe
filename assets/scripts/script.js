@@ -1,4 +1,5 @@
 const Gameboard = (function () {
+	const card = document.querySelector(".card");
 	const gameboardContainer = document.querySelector(".card__content");
 	const reset = document.getElementById("reset");
 	const gameboardArray = Array(9).fill("");
@@ -8,6 +9,7 @@ const Gameboard = (function () {
 	});
 
 	const displayBoard = function () {
+		card.classList.add("show");
 		gameboardArray.forEach(function (gameSpace, index) {
 			gameSpace = document.createElement("article");
 			gameSpace.classList.add("card__item");
@@ -106,11 +108,26 @@ const Player = function (name, marker) {
 };
 
 const Game = (function () {
-	const startGame = document.getElementById("start");
-	startGame.addEventListener("click", function () {
-		if (gameStarted === true) {
-			return;
-		}
+	const playGameBtn = document.getElementById("play");
+	const name = document.getElementById("name");
+	const modal = document.querySelector(".modal");
+	const player1 = Player(name.value, "X");
+	const player2 = Player("Computer", "O");
+	let gameStarted = false;
+	let gameOver = false;
+	let currentPlayer = 2;
+
+	const showIntro = function () {
+		modal.classList.add("show");
+	}
+
+	window.addEventListener("DOMContentLoaded", showIntro);
+
+	playGameBtn.addEventListener("click", function () {
+		// if (gameStarted === true) {
+		// 	return;
+		// }
+		modal.classList.remove("show");
 		Gameboard.displayBoard();
 		const board = Gameboard.getBoard().children;
 		let spaces = [...board];
@@ -119,22 +136,6 @@ const Game = (function () {
 			Gameboard.displayMessage("turn", player1.getName());
 		});
 	});
-
-	const winningPositions = [
-		[1, 2, 3],
-		[4, 5, 6],
-		[7, 8, 9],
-		[1, 4, 7],
-		[2, 5, 8],
-		[3, 6, 9],
-		[1, 5, 9],
-		[3, 5, 7],
-	];
-	const player1 = Player("Player", "X");
-	const player2 = Player("Computer", "O");
-	let gameStarted = false;
-	let gameOver = false;
-	let currentPlayer = 2;
 
 	const getPlayer1 = function () {
 		return player1;

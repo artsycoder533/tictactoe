@@ -43,7 +43,9 @@ card
     width: 90vw;
     height: 100vh;
     display: grid;
-    justify-content: center;;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .card__header {
@@ -141,8 +143,8 @@ modal
     display: flex;
     justify-content: center;
     align-items: center;
-    /* visibility: hidden;
-    opacity: 0; */
+    visibility: hidden;
+    opacity: 0;
     transition: ease-in-out all 1s;
 }
 
@@ -184,7 +186,7 @@ modal
     color: white;
 }
 
-.showModal {
+.show {
     visibility: visible;
     opacity: 1;
 }
