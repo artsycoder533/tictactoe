@@ -6,6 +6,7 @@ const Gameboard = (function () {
 	const gameboardArray = Array(9).fill("");
 	
 	date.textContent = new Date().getFullYear();
+
 	reset.addEventListener("click", function () {
 		clearBoard();
 	});
@@ -13,6 +14,7 @@ const Gameboard = (function () {
 	const displayBoard = function () {
 		reset.classList.add("hide");
 		card.classList.add("show");
+
 		gameboardArray.forEach(function (gameSpace, index) {
 			gameSpace = document.createElement("article");
 			gameSpace.classList.add("card__item");
@@ -40,11 +42,14 @@ const Gameboard = (function () {
 		if (status === "danger") {
 			getMessage.classList.add(`card__message--${status}`);
 			getMessage.textContent = "Not a valid move!";
+
 			setTimeout(function () {
 				getMessage.classList.remove(`card__message--${status}`);
 				getMessage.textContent = "";
 			}, 1500);
+
 			Game.playGame();
+
 		} else if (status === "turn") {
 			getMessage.classList.add(`card__message--success`);
 			getMessage.textContent = `${playerName}'s' turn!`;
@@ -53,11 +58,13 @@ const Gameboard = (function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove(`card__message--success`);
 			}, 1500);
+
 		} else if (status === "winner") {
 			getMessage.classList.add("card__message--success");
 			getMessage.classList.add("enlarge");
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
 			reset.classList.remove("hide");
+
 			Game.updateScore(playerName);
 
 			setTimeout(function () {
@@ -65,6 +72,7 @@ const Gameboard = (function () {
 				getMessage.classList.remove("card__message--success");
 				getMessage.classList.add("enlarge");
 			}, 2500);
+
 		} else if (status === "draw") {
 			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `Its a draw, no winner!`;
@@ -82,6 +90,7 @@ const Gameboard = (function () {
 			gameboardArray[index] = "";
 			gameboardContainer.children[index].textContent = "";
 		});
+
 		reset.classList.add("hide");
 		Game.setGameOver(false);
 	};
@@ -99,7 +108,6 @@ const Gameboard = (function () {
 		displayMessage,
 	};
 })();
-
 
 
 const Player = function (name, marker) {
@@ -143,13 +151,20 @@ const Game = (function () {
 	playGameBtn.addEventListener("click", function (e) {
 		e.preventDefault();
 		playerName = input.value;
+
 		player.setName(playerName);
+
 		computer.setName("Computer");
+
 		setGameOver(false);
+
 		modal.classList.remove("show");
+
 		playerHeading.textContent = player.getName();
 		computerHeading.textContent = computer.getName();
+
 		Gameboard.displayBoard();
+
 		const board = Gameboard.getBoard().children;
 		let spaces = [...board];
 		spaces.forEach(function (space) {
@@ -186,7 +201,9 @@ const Game = (function () {
 	const playGame = function () {
 		if (getGameOver() === false) {
 			Gameboard.updateBoard(player.getMarker(), this.dataset.id);
+
 			checkForWinner(player, player.getMarker());
+
 			if (getGameOver() === false) {
 				setTimeout (function () {
 					Gameboard.updateBoard(computer.getMarker(), getComputerMove());
@@ -200,6 +217,7 @@ const Game = (function () {
 	const getComputerMove = function () {
 		let computerMove = Math.floor(Math.random() * 9);
 		let random = Gameboard.getGameBoardArray();
+		
 		if (random[computerMove] === "X" || random[computerMove] === "O") {
 			while (random[computerMove] === "X" || random[computerMove] === "O") {
 				computerMove = Math.floor(Math.random() * 9);

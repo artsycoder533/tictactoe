@@ -42,6 +42,7 @@ global styles
 /********************************************
 card
 ********************************************/
+
 .card {
     width: 95vw;
     height: 100vh;
@@ -88,7 +89,6 @@ card
 .card__message {
     padding: 0.5rem;
     margin: 1rem 0;
-    /* width: 95vw; */
     height: 2rem;
     text-align: center;
     font-weight: bold;
@@ -169,9 +169,11 @@ card
 .computer__score {
     padding-top: 0.25rem;
 }
+
 /********************************************
 modal
 ********************************************/
+
 .modal {
     position: fixed;
     width: 100vw;
@@ -185,7 +187,6 @@ modal
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out all 1s;
-    /* display: none; */
 } 
 
 .modal__container {
@@ -233,6 +234,10 @@ modal
     opacity: 1;
 }
 
+/********************************************
+accessory
+********************************************/
+
 .hide {
     visibility: hidden;
     opacity: 0;
@@ -242,6 +247,11 @@ modal
     transform: scale(1.5);
     transition: ease-in-out all 2s;
 }
+
+
+/********************************************
+footer
+********************************************/
 
 footer {
     color: white;
