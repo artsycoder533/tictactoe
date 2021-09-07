@@ -5,13 +5,20 @@ const Gameboard = (function () {
 	const replayModal = document.querySelector(".modal__replay");
 	const reset = document.getElementById("reset");
 	const gameboardArray = Array(9).fill("");
-	
+	const endGameBtn = document.getElementById("end");
+	const endGameModal = document.querySelector(".modal__end");
 	date.textContent = new Date().getFullYear();
 
 	reset.addEventListener("click", function () {
 		clearBoard();
 	});
 
+	endGameBtn.addEventListener("click", function () {
+		replayModal.classList.remove("show");
+		endGameModal.classList.add("show");
+		
+	});
+		
 	const displayBoard = function () {
 		reset.classList.add("hide");
 		card.classList.add("show");
@@ -64,15 +71,18 @@ const Gameboard = (function () {
 			getMessage.classList.add("card__message--success");
 			getMessage.classList.add("enlarge");
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
-			reset.classList.remove("hide");
-			replayModal.classList.add("show");
+
 			Game.updateScore(playerName);
 
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
 				getMessage.classList.add("enlarge");
+				reset.classList.remove("hide");
+				replayModal.classList.add("show");
 			}, 2500);
+
+			
 
 		} else if (status === "draw") {
 			getMessage.classList.add("card__message--success");
@@ -82,6 +92,8 @@ const Gameboard = (function () {
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
+				reset.classList.remove("hide");
+				replayModal.classList.add("show");
 			}, 1500);
 		}
 	};
