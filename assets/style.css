@@ -255,6 +255,13 @@ replay modal
 	opacity: 0;
 }
 
+@media screen and (max-width: 768px){
+	.modal__replay,
+	.modal__end {
+		background: black;
+	}
+}
+
 .modal__buttons {
 	display: flex;
 	width: 100%;
@@ -268,6 +275,7 @@ replay modal
 .modal__end {
 	visibility: hidden;
 }
+
 
 .modal__wrapper {
 	background: black;
