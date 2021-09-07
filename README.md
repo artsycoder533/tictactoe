@@ -38,8 +38,8 @@ We were tasked with implementing a Tic Tac Toe game with the following requireme
 
 ### Screenshot
 
-![Mobile Screenshot](./assets/mobile2.png)
-![Desktop Screenshot](./assets/desktop1.png)
+- Mobile Screenshot [Mobile Screenshot](./assets/mobile2.png)
+- Desktop Screenshot [Desktop Screenshot](./assets/desktop1.png)
 
 ### Links
 
