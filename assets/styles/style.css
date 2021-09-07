@@ -47,7 +47,7 @@ card
 
 .card {
     width: 95vw;
-    height: 100vh;
+    height: 90vh;
     display: grid;
     justify-content: center;
     visibility: hidden;
