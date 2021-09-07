@@ -78,8 +78,6 @@ const Gameboard = (function () {
 		});
 
 		Game.setGameOver(false);
-		//reset.classList.add("hide");
-		//Game.playGame();
 	};
 
 	const getGameBoardArray = function () {
@@ -116,11 +114,9 @@ const Player = function (name, marker) {
 
 
 const Game = (function () {
-	const para = document.querySelector(".modal__paragraph");
 	const playGameBtn = document.getElementById("play");
 	const modal = document.querySelector(".modal");
 	const input = document.getElementById("name");
-	//let gameStarted = false;
 	let gameOver = false;
 	let currentPlayer = 2;
 	let playerName = input.value;
@@ -129,33 +125,9 @@ const Game = (function () {
 	
 	const showIntro = function () {
 		modal.classList.add("show");
-		setTimeout(function () {
-			animate();
-		}, 500);
-		
 	}
 
 	window.addEventListener("DOMContentLoaded", showIntro);
-
-	const animate = function () {
-		const splitText = para.textContent.split("");
-		para.textContent = "";
-		splitText.map(function (letter) {
-			return para.innerHTML += `<span class="span">${letter}</span>`;
-		});
-		let char = 0;
-		let timer = setInterval(repeat, 100);
-		function repeat() {
-			const span = para.querySelectorAll(".span")[char];
-			span.classList.add("move");
-			char++;
-			if (char === splitText.length) {
-				clearInterval(timer);
-				timer = null;
-				return;
-			}
-		}
-	}
 
 	playGameBtn.addEventListener("click", function (e) {
 		e.preventDefault();
@@ -163,11 +135,9 @@ const Game = (function () {
 		player.setName(playerName);
 		computer.setName("Computer");
 		console.log(player.getName());
-		
 		modal.classList.remove("show");
 		Gameboard.displayBoard();
 		const board = Gameboard.getBoard().children;
-		//Gameboard.displayMessage("turn", player.getName());
 		let spaces = [...board];
 		spaces.forEach(function (space) {
 			space.addEventListener("click", playGame);
@@ -190,11 +160,7 @@ const Game = (function () {
 		return gameOver;
 	};
 	const playGame = function () {
-		//setGameOver(false);
 		if (getGameOver() === false) {
-			//let player;
-			//player = togglePlayer(currentPlayer);
-			//Gameboard.displayMessage("turn", player.getName());
 			Gameboard.updateBoard(player.getMarker(), this.dataset.id);
 			checkForWinner(player, player.getMarker());
 			if (getGameOver() === false) {
@@ -202,8 +168,6 @@ const Game = (function () {
 					Gameboard.updateBoard(computer.getMarker(), getComputerMove());
 					checkForWinner(computer, computer.getMarker());
 				}, 500);
-				
-				
 			}
 		}
 		return;
