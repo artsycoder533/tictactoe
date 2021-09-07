@@ -11,10 +11,9 @@ body {
     width: 100vw;
 	display: grid;
 	place-items: center;
-	/* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover; */
-	background: rgba(0, 0, 0, 0.5) url("/assets/images/background.jpg") no-repeat
-		center/cover;
-	background-blend-mode: multiply;
+	/* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover;  */
+	background: url("./background.jpg") no-repeat center/cover;
+	/* background-blend-mode: multiply; */
 	font-family: "Roboto", sans-serif;
 }
 

@@ -151,7 +151,7 @@ const Game = (function () {
 
 	playGameBtn.addEventListener("click", function (e) {
 		e.preventDefault();
-		if (!input.value || input.value.trim().isEmpty()) {
+		if (!input.value || input.value.trim() === "") {
 			warning.textContent = "Enter a valid name!";
 			setTimeout(function () {
 				warning.textContent = "";
