@@ -12,8 +12,8 @@ body {
 	display: grid;
 	place-items: center;
 	/* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover;  */
-	background: url("./background.jpg") no-repeat center/cover;
-	/* background-blend-mode: multiply; */
+	background: rgba(0, 0, 0, 0.7) url("./background.jpg") no-repeat center/cover;
+	background-blend-mode: multiply;
 	font-family: "Roboto", sans-serif;
 }
 
