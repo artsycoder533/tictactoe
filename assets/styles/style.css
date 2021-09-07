@@ -68,7 +68,7 @@ card
     color: rgb(235, 80, 191);
     font-family: 'Rock Salt', cursive;
     letter-spacing: 0.25rem;
-    
+    text-align: center;
 }
 
 .card__button--primary{
@@ -208,6 +208,7 @@ modal
 .modal__title {
     font-size: 1.75rem;
     padding: 0;
+    text-align: center;
 }
 
 .modal__paragraph {
