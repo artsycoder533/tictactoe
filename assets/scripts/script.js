@@ -1,9 +1,11 @@
 const Gameboard = (function () {
+	const date = document.querySelector(".date");
 	const card = document.querySelector(".card");
 	const gameboardContainer = document.querySelector(".card__content");
 	const reset = document.getElementById("reset");
 	const gameboardArray = Array(9).fill("");
 
+	date.textContent = new Date().getFullYear();
 	reset.addEventListener("click", function () {
 		clearBoard();
 	});
@@ -38,11 +40,11 @@ const Gameboard = (function () {
 		if (status === "danger") {
 			getMessage.classList.add(`card__message--${status}`);
 			getMessage.textContent = "Spot already taken, please enter a valid move!";
-
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove(`card__message--${status}`);
 			}, 1500);
+			Game.playGame();
 		} else if (status === "turn") {
 			getMessage.classList.add(`card__message--success`);
 			getMessage.textContent = `${playerName}'s' turn!`;
@@ -53,17 +55,20 @@ const Gameboard = (function () {
 			}, 1500);
 		} else if (status === "winner") {
 			getMessage.classList.add("card__message--success");
-			getMessage.classList.add("enlarge")
+			getMessage.classList.add("enlarge");
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
 			reset.classList.remove("hide");
+
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
+				getMessage.classList.add("enlarge");
 			}, 2500);
 		} else if (status === "draw") {
 			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `Its a draw, no winner!`;
-			reset.classList.add("hide");
+			reset.classList.remove("hide");
+
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
@@ -76,7 +81,7 @@ const Gameboard = (function () {
 			gameboardArray[index] = "";
 			gameboardContainer.children[index].textContent = "";
 		});
-
+		reset.classList.add("hide");
 		Game.setGameOver(false);
 	};
 
@@ -99,7 +104,6 @@ const Gameboard = (function () {
 const Player = function (name, marker) {
 	this.name = name;
 	this.marker = marker;
-	console.log(name);
 	const getMarker = function () {
 		return marker;
 	};
@@ -134,7 +138,7 @@ const Game = (function () {
 		playerName = input.value;
 		player.setName(playerName);
 		computer.setName("Computer");
-		console.log(player.getName());
+		setGameOver(false);
 		modal.classList.remove("show");
 		Gameboard.displayBoard();
 		const board = Gameboard.getBoard().children;
@@ -235,7 +239,6 @@ const Game = (function () {
 		getComputerMove,
 		setGameOver,
 		getGameOver,
-		animate
 	};
 })();
 

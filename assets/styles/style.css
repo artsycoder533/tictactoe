@@ -71,6 +71,7 @@ card
     background: transparent;
     border: 2px solid white;
     color: white;
+    transition: all 1s ease-in-out;
 }
 
 .card__button--primary:hover {
@@ -88,27 +89,27 @@ card
     width: 100%;
     height: 2rem;
     text-align: center;
-    color: white;
+    /* color: white; */
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card__message--danger{
-    /* background: rgb(167, 1, 1); */
-
     background: rgb(245, 233, 139);
     color: black;
 }
 
 .card__message--success{
-    /* background: rgb(0, 84, 0); */
     color: rgb(245, 233, 139);
     background: transparent;
     transition: ease-in-out all 1s;
 }
 
 .card__content {
-    /* margin-top: 1rem; */
     display: grid;
+    justify-content: center;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     max-width: 500px;
@@ -118,13 +119,15 @@ card
 }
 
 .card__item {
-    display: block;
+    display: grid;
+    place-items: center;
     text-align: center;
     font-size: 3rem;
     cursor: pointer;
     color: white;
     font-family: 'Rock Salt', cursive;
     font-weight: bold;
+    
 }
 
 .card__item:nth-of-type(1),
@@ -159,7 +162,8 @@ modal
     visibility: hidden;
     opacity: 0;
     transition: ease-in-out all 1s;
-}
+    /* display: none; */
+} 
 
 .modal__container {
     width: 90vw;
@@ -216,3 +220,7 @@ modal
     transition: ease-in-out all 2s;
 }
 
+footer {
+    color: white;
+    text-align: center;
+}
