@@ -61,8 +61,8 @@ card
 ********************************************/
 
 .card {
-	/* width: 95vw;
-	height: 90vh; */
+	
+	height: 100vh;
 	display: grid;
 	justify-content: center;
 	visibility: hidden;
@@ -314,4 +314,5 @@ footer
 footer {
 	color: white;
 	text-align: center;
+	padding-top: 0.5rem;
 }
