@@ -61,12 +61,12 @@ card
 ********************************************/
 
 .card {
-	
-	height: 100vh;
+	height: 95vh;
 	display: grid;
 	justify-content: center;
 	visibility: hidden;
 	opacity: 0;
+	margin: auto;
 }
 
 .card__header {
@@ -75,12 +75,12 @@ card
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+	padding-bottom: 0;
 }
 
 .card__title {
 	text-transform: uppercase;
 	font-size: 2rem;
-	padding: 1rem;
 	color: rgb(235, 80, 191);
 	font-family: "Rock Salt", cursive;
 	letter-spacing: 0.25rem;
@@ -217,7 +217,6 @@ intro modal
 	padding: 1rem;
 	position: relative;
 	backdrop-filter: blur(0.75rem);
-	/* box-shadow: inset 5px 5px 15px rgba(247, 243, 243, 0.1); */
 }
 
 .modal__title {
@@ -315,7 +314,7 @@ footer
 footer {
 	color: white;
 	text-align: center;
-	padding-top: 0.5rem;
+	padding-top: 1rem;
 }
 
 /********************************************

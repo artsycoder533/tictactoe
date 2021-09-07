@@ -70,7 +70,7 @@ const Gameboard = (function () {
 		} else if (status === "winner") {
 			getMessage.classList.add("card__message--success");
 			getMessage.classList.add("enlarge");
-			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
+			getMessage.textContent = `${playerName} is the winner!!!!!!!!`;
 
 			Game.updateScore(playerName);
 
