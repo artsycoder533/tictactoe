@@ -255,13 +255,6 @@ replay modal
 	opacity: 0;
 }
 
-@media screen and (max-width: 768px){
-	.modal__replay,
-	.modal__end {
-		background: black;
-	}
-}
-
 .modal__buttons {
 	display: flex;
 	width: 100%;
@@ -323,4 +316,14 @@ footer {
 	color: white;
 	text-align: center;
 	padding-top: 0.5rem;
+}
+
+/********************************************
+media queries
+********************************************/
+@media screen and (max-width: 768px){
+	.modal__end,
+	.replay_container {
+		background: black;
+	}
 }
