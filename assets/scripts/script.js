@@ -93,6 +93,8 @@ const Gameboard = (function () {
 	};
 })();
 
+
+
 const Player = function (name, marker) {
 	this.name = name;
 	this.marker = marker;
@@ -100,43 +102,49 @@ const Player = function (name, marker) {
 	const getMarker = function () {
 		return marker;
 	};
-	const getName = function () {
-		return name;
-	};
-
-	return { getMarker, getName };
+	const getName = function (){
+		return this.name;
+	}
+	const setName = function (newName) {
+		this.name = newName;
+	}
+	return {getName, getMarker, setName };
 };
+
 
 const Game = (function () {
 	const playGameBtn = document.getElementById("play");
-	const name = document.getElementById("name");
 	const modal = document.querySelector(".modal");
-	const player1 = Player(name.value, "X");
-	const player2 = Player("Computer", "O");
+	const input = document.getElementById("name");
 	let gameStarted = false;
 	let gameOver = false;
 	let currentPlayer = 2;
-
+	let playerName = input.value;
+	const player1 = Player(playerName, "X");
+	const player2 = Player("Computer", "O");
+	
 	const showIntro = function () {
 		modal.classList.add("show");
 	}
 
 	window.addEventListener("DOMContentLoaded", showIntro);
 
-	playGameBtn.addEventListener("click", function () {
-		// if (gameStarted === true) {
-		// 	return;
-		// }
+	playGameBtn.addEventListener("click", function (e) {
+		e.preventDefault();
+		playerName = input.value;
+		player1.setName(playerName);
+		console.log(player1.getName());
+		
 		modal.classList.remove("show");
 		Gameboard.displayBoard();
 		const board = Gameboard.getBoard().children;
+		Gameboard.displayMessage("turn", player1.getName());
 		let spaces = [...board];
 		spaces.forEach(function (space) {
 			space.addEventListener("click", playGame);
-			Gameboard.displayMessage("turn", player1.getName());
 		});
 	});
-
+	
 	const getPlayer1 = function () {
 		return player1;
 	};
@@ -154,6 +162,7 @@ const Game = (function () {
 	};
 	const playGame = function () {
 		//setGameOver(false);
+		console.log("player 1: " + player1.name);
 		if (getGameOver() === false) {
 			//let player;
 			//player = togglePlayer(currentPlayer);
@@ -161,7 +170,10 @@ const Game = (function () {
 			Gameboard.updateBoard(player1.getMarker(), this.dataset.id);
 			checkForWinner(player1, player1.getMarker());
 			if (getGameOver() === false) {
-				Gameboard.updateBoard(player2.getMarker(), getComputerMove());
+				setTimeout (function () {
+					Gameboard.updateBoard(player2.getMarker(), getComputerMove());
+				}, 500);
+				
 				checkForWinner(player2, player2.getMarker());
 			}
 		}
@@ -230,5 +242,6 @@ const Game = (function () {
 		getComputerMove,
 		setGameOver,
 		getGameOver,
+		
 	};
 })();
