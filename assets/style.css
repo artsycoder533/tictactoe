@@ -172,7 +172,7 @@ card
 }
 
 /********************************************
-modal
+intro modal
 ********************************************/
 
 .modal {
@@ -231,14 +231,23 @@ modal
 	color: black;
 }
 
-.show {
-	visibility: visible;
-	opacity: 1;
+/********************************************
+replay modal
+********************************************/
+
+.modal__replay {
+	visibility: hidden;
+	opacity: 0;
 }
 
 /********************************************
 accessory
 ********************************************/
+
+.show {
+	visibility: visible;
+	opacity: 1;
+} 
 
 .hide {
 	visibility: hidden;

@@ -2,6 +2,7 @@ const Gameboard = (function () {
 	const date = document.querySelector(".date");
 	const card = document.querySelector(".card");
 	const gameboardContainer = document.querySelector(".card__content");
+	const replayModal = document.querySelector(".modal__replay");
 	const reset = document.getElementById("reset");
 	const gameboardArray = Array(9).fill("");
 	
@@ -64,7 +65,7 @@ const Gameboard = (function () {
 			getMessage.classList.add("enlarge");
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
 			reset.classList.remove("hide");
-
+			replayModal.classList.add("show");
 			Game.updateScore(playerName);
 
 			setTimeout(function () {
@@ -90,7 +91,7 @@ const Gameboard = (function () {
 			gameboardArray[index] = "";
 			gameboardContainer.children[index].textContent = "";
 		});
-
+		replayModal.classList.remove("show");
 		reset.classList.add("hide");
 		Game.setGameOver(false);
 	};
