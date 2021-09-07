@@ -1,43 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rock+Salt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Rock+Salt&display=swap");
 
-*  {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    height: 100vh;
-    display: grid;
-    place-items: center;
-    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover; */
-    background: rgba(0,0,0,0.6) url(/assets/images/background.jpg) center/cover;  
-    background-blend-mode: multiply;  
-    font-family: 'Roboto', sans-serif;
+	height: 100vh;
+    width: 100vw;
+	display: grid;
+	place-items: center;
+	/* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover; */
+	background: rgba(0, 0, 0, 0.5) url("/assets/images/background.jpg") no-repeat
+		center/cover;
+	background-blend-mode: multiply;
+	font-family: "Roboto", sans-serif;
 }
 
 /********************************************
 global styles
 ********************************************/
 .btn {
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
+	padding: 0.6rem 1rem;
+	border-radius: 0.5rem;
+	border: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
 }
 
 .btn:hover {
-    opacity: 0.5;
+	opacity: 0.5;
 }
 
 ::placeholder {
-    font-family: 'Roboto', sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 /********************************************
@@ -45,93 +47,92 @@ card
 ********************************************/
 
 .card {
-    width: 95vw;
-    height: 90vh;
-    display: grid;
-    justify-content: center;
-    visibility: hidden;
-    opacity: 0;
+	width: 95vw;
+	height: 90vh;
+	display: grid;
+	justify-content: center;
+	visibility: hidden;
+	opacity: 0;
 }
 
 .card__header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .card__title {
-    text-transform: uppercase;
-    font-size: 2rem;
-    padding: 1rem;
-    color: rgb(235, 80, 191);
-    font-family: 'Rock Salt', cursive;
-    letter-spacing: 0.25rem;
-    text-align: center;
+	text-transform: uppercase;
+	font-size: 2rem;
+	padding: 1rem;
+	color: rgb(235, 80, 191);
+	font-family: "Rock Salt", cursive;
+	letter-spacing: 0.25rem;
+	text-align: center;
 }
 
-.card__button--primary{
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    transition: all 1s ease-in-out;
+.card__button--primary {
+	background: transparent;
+	border: 2px solid white;
+	color: white;
+	transition: all 1s ease-in-out;
 }
 
 .card__button--primary:hover {
-    background:rgb(235, 80, 191);
+	background: rgb(235, 80, 191);
 }
 
 .card__button--secondary {
-    background: white;
-    color: black;
+	background: white;
+	color: black;
 }
 
 .card__message {
-    padding: 0.5rem;
-    margin: 1rem 0;
-    height: 2rem;
-    text-align: center;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+	padding: 0.5rem;
+	margin: 1rem 0;
+	height: 2rem;
+	text-align: center;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
 }
 
-.card__message--danger{
-    background: rgb(245, 233, 139);
-    color: black;
-    transition: ease-in-out all 1s;
+.card__message--danger {
+	background: rgb(245, 233, 139);
+	color: black;
+	transition: ease-in-out all 1s;
 }
 
-.card__message--success{
-    color: rgb(245, 233, 139);
-    background: transparent;
-    transition: ease-in-out all 1s;
+.card__message--success {
+	color: rgb(245, 233, 139);
+	background: transparent;
+	transition: ease-in-out all 1s;
 }
 
 .card__content {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    max-width: 500px;
-    width: 95vw;
-    max-height: 500px;
-    height: 50vh;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	max-width: 500px;
+	width: 95vw;
+	max-height: 500px;
+	height: 50vh;
 }
 
 .card__item {
-    display: grid;
-    place-items: center;
-    text-align: center;
-    font-size: 3rem;
-    cursor: pointer;
-    color: white;
-    font-family: 'Rock Salt', cursive;
-    font-weight: bold;
-    
+	display: grid;
+	place-items: center;
+	text-align: center;
+	font-size: 3rem;
+	cursor: pointer;
+	color: white;
+	font-family: "Rock Salt", cursive;
+	font-weight: bold;
 }
 
 .card__item:nth-of-type(1),
@@ -139,36 +140,36 @@ card
 .card__item:nth-of-type(3),
 .card__item:nth-of-type(4),
 .card__item:nth-of-type(5),
-.card__item:nth-of-type(6){
-    border-bottom: 8px solid rgb(245, 233, 139);
+.card__item:nth-of-type(6) {
+	border-bottom: 8px solid rgb(245, 233, 139);
 }
 
 .card__item:nth-of-type(2),
 .card__item:nth-of-type(5),
-.card__item:nth-of-type(8){
-    border-left: 8px solid rgb(235, 80, 191);
-    border-right: 8px solid rgb(35, 189, 245);
+.card__item:nth-of-type(8) {
+	border-left: 8px solid rgb(235, 80, 191);
+	border-right: 8px solid rgb(35, 189, 245);
 }
 
 .card__scores {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    color: white;
-    justify-content: center;
-    align-content: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	color: white;
+	justify-content: center;
+	align-content: center;
 }
 
-.card__player, 
+.card__player,
 .card__computer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+	width: 100%;
+	height: 100%;
+	text-align: center;
 }
 
 .player__score,
 .computer__score {
-    padding-top: 0.25rem;
+	padding-top: 0.25rem;
 }
 
 /********************************************
@@ -176,64 +177,64 @@ modal
 ********************************************/
 
 .modal {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: ease-in-out all 1s;
-} 
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: ease-in-out all 1s;
+}
 
 .modal__container {
-    width: 90vw;
-    height: 40vh;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    position: relative;
-    backdrop-filter: blur(0.75rem);
-    box-shadow: inset 5px 5px 15px rgba(247, 243, 243, 0.1);
+	width: 90vw;
+	height: 40vh;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 0.5rem;
+	padding: 1rem;
+	position: relative;
+	backdrop-filter: blur(0.75rem);
+	box-shadow: inset 5px 5px 15px rgba(247, 243, 243, 0.1);
 }
 
 .modal__title {
-    font-size: 1.75rem;
-    padding: 0;
-    text-align: center;
+	font-size: 1.75rem;
+	padding: 0;
+	text-align: center;
 }
 
 .modal__paragraph {
-    color: white;
+	color: rgb(245, 233, 139);
+    height: 1rem;
 }
 
 .name {
-    padding: 0.5rem;
-    font-size: 1rem;
-    width: 100%;
-    background:rgb(173, 233, 255);
-    color: black;
-    border-radius: 0.5rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	width: 100%;
+	background: rgb(173, 233, 255);
+	color: black;
+	border-radius: 0.5rem;
 }
 
 .modal__btn-primary {
-    background: rgb(235, 80, 191);
-    border: 2px solid rgb(35, 189, 245);
-    color: black;
-    
+	background: rgb(235, 80, 191);
+	border: 2px solid rgb(35, 189, 245);
+	color: black;
 }
 
 .show {
-    visibility: visible;
-    opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
 
 /********************************************
@@ -241,21 +242,20 @@ accessory
 ********************************************/
 
 .hide {
-    visibility: hidden;
-    opacity: 0;
+	visibility: hidden;
+	opacity: 0;
 }
 
 .enlarge {
-    transform: scale(1.5);
-    transition: ease-in-out all 2s;
+	transform: scale(1.5);
+	transition: ease-in-out all 2s;
 }
-
 
 /********************************************
 footer
 ********************************************/
 
 footer {
-    color: white;
-    text-align: center;
+	color: white;
+	text-align: center;
 }

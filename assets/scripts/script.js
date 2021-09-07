@@ -129,6 +129,7 @@ const Player = function (name, marker) {
 const Game = (function () {
 	const playGameBtn = document.getElementById("play");
 	const modal = document.querySelector(".modal");
+	const warning = document.querySelector(".modal__paragraph");
 	const input = document.getElementById("name");
 	const playerScore = document.getElementById("player");
 	const computerScore = document.getElementById("computer");
@@ -150,6 +151,13 @@ const Game = (function () {
 
 	playGameBtn.addEventListener("click", function (e) {
 		e.preventDefault();
+		if (!input.value || input.value.trim().isEmpty()) {
+			warning.textContent = "Enter a valid name!";
+			setTimeout(function () {
+				warning.textContent = "";
+			}, 1000);
+			return;
+		}
 		playerName = input.value;
 
 		player.setName(playerName);
@@ -217,7 +225,7 @@ const Game = (function () {
 	const getComputerMove = function () {
 		let computerMove = Math.floor(Math.random() * 9);
 		let random = Gameboard.getGameBoardArray();
-		
+
 		if (random[computerMove] === "X" || random[computerMove] === "O") {
 			while (random[computerMove] === "X" || random[computerMove] === "O") {
 				computerMove = Math.floor(Math.random() * 9);
