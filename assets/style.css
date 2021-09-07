@@ -61,8 +61,8 @@ card
 ********************************************/
 
 .card {
-	width: 95vw;
-	height: 90vh;
+	/* width: 95vw;
+	height: 90vh; */
 	display: grid;
 	justify-content: center;
 	visibility: hidden;
