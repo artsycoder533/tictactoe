@@ -10,10 +10,9 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(/assets/images/background.jpg) no-repeat center/cover;
-    background-position: center;
-    /* background: rgba(0,0,0,0.6) url(/assets/images/background.jpg) center/cover;  */
-    /* background-blend-mode: multiply;  */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)) url(/assets/images/background.jpg) no-repeat center/cover; */
+    background: rgba(0,0,0,0.6) url(/assets/images/background.jpg) no-repeat center/cover;  
+    background-blend-mode: multiply;  
     font-family: 'Roboto', sans-serif;
 }
 
@@ -141,14 +140,14 @@ card
 .card__item:nth-of-type(4),
 .card__item:nth-of-type(5),
 .card__item:nth-of-type(6){
-    border-bottom: 10px solid rgb(245, 233, 139);
+    border-bottom: 8px solid rgb(245, 233, 139);
 }
 
 .card__item:nth-of-type(2),
 .card__item:nth-of-type(5),
 .card__item:nth-of-type(8){
-    border-left: 10px solid rgb(235, 80, 191);
-    border-right: 10px solid rgb(35, 189, 245);
+    border-left: 8px solid rgb(235, 80, 191);
+    border-right: 8px solid rgb(35, 189, 245);
 }
 
 .card__scores {
