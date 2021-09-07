@@ -9,6 +9,7 @@ const Gameboard = (function () {
 	});
 
 	const displayBoard = function () {
+		reset.classList.add("hide");
 		card.classList.add("show");
 		gameboardArray.forEach(function (gameSpace, index) {
 			gameSpace = document.createElement("article");
@@ -52,16 +53,17 @@ const Gameboard = (function () {
 			}, 1500);
 		} else if (status === "winner") {
 			getMessage.classList.add("card__message--success");
+			getMessage.classList.add("enlarge")
 			getMessage.textContent = `${playerName}'s the winner!!!!!!!!`;
-
+			reset.classList.remove("hide");
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
-			}, 1500);
+			}, 2500);
 		} else if (status === "draw") {
 			getMessage.classList.add("card__message--success");
 			getMessage.textContent = `Its a draw, no winner!`;
-			
+			reset.classList.add("hide");
 			setTimeout(function () {
 				getMessage.textContent = "";
 				getMessage.classList.remove("card__message--success");
@@ -76,6 +78,7 @@ const Gameboard = (function () {
 		});
 
 		Game.setGameOver(false);
+		//reset.classList.add("hide");
 		//Game.playGame();
 	};
 
@@ -98,7 +101,7 @@ const Gameboard = (function () {
 const Player = function (name, marker) {
 	this.name = name;
 	this.marker = marker;
-
+	console.log(name);
 	const getMarker = function () {
 		return marker;
 	};
@@ -113,44 +116,70 @@ const Player = function (name, marker) {
 
 
 const Game = (function () {
+	const para = document.querySelector(".modal__paragraph");
 	const playGameBtn = document.getElementById("play");
 	const modal = document.querySelector(".modal");
 	const input = document.getElementById("name");
-	let gameStarted = false;
+	//let gameStarted = false;
 	let gameOver = false;
 	let currentPlayer = 2;
 	let playerName = input.value;
-	const player1 = Player(playerName, "X");
-	const player2 = Player("Computer", "O");
+	const player = Player("Player", "X");
+	const computer = Player("Computer","O");
 	
 	const showIntro = function () {
 		modal.classList.add("show");
+		setTimeout(function () {
+			animate();
+		}, 500);
+		
 	}
 
 	window.addEventListener("DOMContentLoaded", showIntro);
 
+	const animate = function () {
+		const splitText = para.textContent.split("");
+		para.textContent = "";
+		splitText.map(function (letter) {
+			return para.innerHTML += `<span class="span">${letter}</span>`;
+		});
+		let char = 0;
+		let timer = setInterval(repeat, 100);
+		function repeat() {
+			const span = para.querySelectorAll(".span")[char];
+			span.classList.add("move");
+			char++;
+			if (char === splitText.length) {
+				clearInterval(timer);
+				timer = null;
+				return;
+			}
+		}
+	}
+
 	playGameBtn.addEventListener("click", function (e) {
 		e.preventDefault();
 		playerName = input.value;
-		player1.setName(playerName);
-		console.log(player1.getName());
+		player.setName(playerName);
+		computer.setName("Computer");
+		console.log(player.getName());
 		
 		modal.classList.remove("show");
 		Gameboard.displayBoard();
 		const board = Gameboard.getBoard().children;
-		Gameboard.displayMessage("turn", player1.getName());
+		//Gameboard.displayMessage("turn", player.getName());
 		let spaces = [...board];
 		spaces.forEach(function (space) {
 			space.addEventListener("click", playGame);
 		});
 	});
 	
-	const getPlayer1 = function () {
-		return player1;
+	const getPlayer = function () {
+		return player;
 	};
 	
-	const getPlayer2 = function () {
-		return player2;
+	const getComputer = function () {
+		return computer;
 	};
 
 	const setGameOver = function (change) {
@@ -162,19 +191,19 @@ const Game = (function () {
 	};
 	const playGame = function () {
 		//setGameOver(false);
-		console.log("player 1: " + player1.name);
 		if (getGameOver() === false) {
 			//let player;
 			//player = togglePlayer(currentPlayer);
 			//Gameboard.displayMessage("turn", player.getName());
-			Gameboard.updateBoard(player1.getMarker(), this.dataset.id);
-			checkForWinner(player1, player1.getMarker());
+			Gameboard.updateBoard(player.getMarker(), this.dataset.id);
+			checkForWinner(player, player.getMarker());
 			if (getGameOver() === false) {
 				setTimeout (function () {
-					Gameboard.updateBoard(player2.getMarker(), getComputerMove());
+					Gameboard.updateBoard(computer.getMarker(), getComputerMove());
+					checkForWinner(computer, computer.getMarker());
 				}, 500);
 				
-				checkForWinner(player2, player2.getMarker());
+				
 			}
 		}
 		return;
@@ -194,11 +223,11 @@ const Game = (function () {
 	const togglePlayer = function () {
 		if (currentPlayer === 1) {
 			currentPlayer++;
-			return getPlayer2();
+			return getcomputer();
 		}
 		if (currentPlayer === 2) {
 			currentPlayer--;
-			return getPlayer1();
+			return getPlayer();
 		}
 	};
 
@@ -235,13 +264,14 @@ const Game = (function () {
 	};
 	return {
 		playGame,
-		getPlayer1,
-		getPlayer2,
+		getPlayer,
+		getComputer,
 		togglePlayer,
 		checkForWinner,
 		getComputerMove,
 		setGameOver,
 		getGameOver,
-		
+		animate
 	};
 })();
+

@@ -26,6 +26,9 @@ global styles
     text-transform: uppercase;
     text-align: center;
     font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
 }
 
 .btn:hover {
@@ -65,8 +68,13 @@ card
 }
 
 .card__button--primary{
-    background: black;
+    background: transparent;
+    border: 2px solid white;
     color: white;
+}
+
+.card__button--primary:hover {
+    background:rgb(235, 80, 191);
 }
 
 .card__button--secondary {
@@ -82,15 +90,20 @@ card
     text-align: center;
     color: white;
     font-weight: bold;
-    
 }
 
 .card__message--danger{
-    background: rgb(167, 1, 1);
+    /* background: rgb(167, 1, 1); */
+
+    background: rgb(245, 233, 139);
+    color: black;
 }
 
 .card__message--success{
-    background: rgb(0, 84, 0);
+    /* background: rgb(0, 84, 0); */
+    color: rgb(245, 233, 139);
+    background: transparent;
+    transition: ease-in-out all 1s;
 }
 
 .card__content {
@@ -126,7 +139,7 @@ card
 .card__item:nth-of-type(2),
 .card__item:nth-of-type(5),
 .card__item:nth-of-type(8){
-    border-left: 10px solid rgb(235, 80, 191);;
+    border-left: 10px solid rgb(235, 80, 191);
     border-right: 10px solid rgb(35, 189, 245);
 }
 
@@ -178,15 +191,41 @@ modal
     width: 100%;
     background:rgb(173, 233, 255);
     color: black;
+    border-radius: 0.5rem;
 }
 
 .modal__btn-primary {
-    background: transparent;
+    background: rgb(235, 80, 191);
     border: 2px solid rgb(35, 189, 245);
-    color: white;
+    color: black;
+    
 }
 
 .show {
     visibility: visible;
     opacity: 1;
 }
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.enlarge {
+    transform: scale(1.5);
+    transition: ease-in-out all 2s;
+}
+
+/* .span {
+    display: inline-block;
+    opacity: 0;
+    transition: all 1s ease;
+    transform: translateY(50px);
+    color: white;
+}
+
+.move {
+    opacity: 1;
+    color:rgb(245, 233, 139);
+    transform: translateY(0)
+} */
