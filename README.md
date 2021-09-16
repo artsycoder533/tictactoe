@@ -1,6 +1,7 @@
 # Tic Tac Toe 
 
 This is my solution to The Odin Project's [Project Tic Tac Toe](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/tic-tac-toe).
+
 [![wakatime](https://wakatime.com/badge/github/artsycoder533/tictactoe.svg)](https://wakatime.com/badge/github/artsycoder533/tictactoe)
 
 ## Table of contents
